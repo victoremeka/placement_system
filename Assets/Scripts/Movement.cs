@@ -7,15 +7,11 @@ public class Movement : MonoBehaviour
     public float cellSize = 1f;
     List<Node> grid;
     Vector3 inputDirection;
-    Rigidbody itemRigidbody;
     Ray ray;
     RaycastHit hit;
     [SerializeField] LayerMask layerMask;
     void Start()
     {
-
-        itemRigidbody = GetComponent<Rigidbody> ();
-        
     }
 
     void Update()
@@ -25,31 +21,19 @@ public class Movement : MonoBehaviour
     }
 
     void FixedUpdate(){
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit, layerMask) && grid != null){
-            print(hit.collider.name);
-            foreach (Node node in grid)
-            {
-                float distance = Vector3.Distance(hit.point, node.position);
-                if (distance < cellSize/2){
-                    // print(node.position);
-                    transform.position = new(node.position.x, transform.position.y, node.position.z);
+        if(Input.GetMouseButton(0)){
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask: layerMask) && grid != null){
+                foreach (Node node in grid)
+                {
+                    float distance = Vector3.Distance(hit.point, node.position);
+                    if (distance < cellSize/2 && !node.occupied){
+                        transform.position = new(node.position.x, transform.position.y, node.position.z);
+                    }
                 }
             }
         }
-        
-        // float threshold = 0.1f;
-
-        // if(inputDirection.magnitude != 0)
-        // {
-        //     itemRigidbody.MovePosition(transform.position + inputDirection);
-            
-        //     foreach (Node node in grid)
-        //     {
-        //         transform.position = Vector3.Distance(transform.position, node.position) <= threshold ? node.position : transform.position;
-        //     }
-        // }
     }
     void OnDrawGizmos(){
         Gizmos.DrawRay(ray.GetPoint(Mathf.Infinity), hit.point);

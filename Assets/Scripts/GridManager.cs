@@ -8,7 +8,7 @@ public class GridManager : MonoBehaviour
 {
     [SerializeField] LayerMask layerMask;
     [SerializeField] private Vector2 gridDimension;
-    [SerializeField] float cellSize;
+    float cellSize = 1f;
     public GameObject tile;
     [HideInInspector] public List<Node> grid;
 
