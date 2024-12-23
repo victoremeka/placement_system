@@ -10,9 +10,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Vector2 gridDimension;
     [SerializeField] float cellSize;
     public GameObject tile;
-    List<Node> grid;
-
-    
+    [HideInInspector] public List<Node> grid;
 
     GameObject[] items;
 
@@ -25,16 +23,9 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    void Update(){
+    void FixedUpdate(){
         foreach (Node node in grid)
-            node.occupied = Physics.CheckSphere(node.position, cellSize/2, layerMask);
-        IEnumerator coroutine = PlaceItem(items[0]);
-        if(Input.GetKey(KeyCode.Space)){
-            StartCoroutine(coroutine);
-        } else if (Input.GetKey(KeyCode.S))
-        {
-            StopCoroutine(coroutine);
-        }
+            node.occupied = Physics.CheckSphere(node.position, cellSize/4, layerMask);    
     }
 
     void CreateGrid(){
@@ -48,22 +39,13 @@ public class GridManager : MonoBehaviour
             {
                 if(x%cellSize == 0 && y%cellSize == 0){
                     Vector3 nodePosition = worldOffset + Vector3.right * (x + cellSize/2) + Vector3.forward * (y + cellSize/2) ;
-                    bool occupied = Physics.CheckSphere(nodePosition, cellSize/2, layerMask);
+                    bool occupied = Physics.CheckSphere(nodePosition, cellSize/4, layerMask);
                     Node node = new(nodePosition,occupied);
                     grid.Add(node);
                 }
                 
             }
         }
-    }
-
-    IEnumerator PlaceItem(GameObject item){
-        float threshold = cellSize/2;
-        foreach (Node node in grid){
-            Vector3 distanceBetween = node.position - item.transform.localScale * threshold;
-            // set item position to nearest node position
-        }
-        yield return null;
     }
 
     void OnDrawGizmos(){
