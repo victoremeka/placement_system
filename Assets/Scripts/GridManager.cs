@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    // Items to be placed on grid have to be divisible by gridDimension
     [SerializeField] LayerMask layerMask;
     [SerializeField] private Vector2 gridDimension;
     float cellSize = 1f;

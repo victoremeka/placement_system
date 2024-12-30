@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 198959332}
   m_Layer: 0
-  m_Name: targets
+  m_Name: items
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,7 +309,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   gridDimension: {x: 10, y: 10}
-  cellSize: 1
   tile: {fileID: 7592678789440493057, guid: ae0f93d6ea74e7545a3926050297b0e2, type: 3}
 --- !u!1 &330585543
 GameObject:
@@ -647,7 +646,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -2.5}
-  m_LocalScale: {x: 4, y: 1, z: 2}
+  m_LocalScale: {x: 5, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 198959332}
@@ -755,7 +754,7 @@ Transform:
   m_GameObject: {fileID: 1775704601}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
